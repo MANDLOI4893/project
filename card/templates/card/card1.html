@@ -1,0 +1,230 @@
+{% extends "card/base1.html" %}
+{% block cs %}
+
+
+.img-fluid {
+max-width: 100%;
+height: 100%;
+}
+.footer{
+align-items: center;
+display: flex;
+justify-content: center;
+}
+
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+}
+
+.img2{
+    max-width: 100%;
+    height: 100%
+  }
+ 
+  .card{
+    box-shadow: inset 0 0 7px 2px #c7dfd4;
+  }
+  
+  .fcard h3 { 
+      font-size: 1.3rem;
+  }
+
+  #imgd{
+    margin-left: 42%;
+  }
+  @media (max-width:768px) {
+    #imgd{
+      margin-left: 23%;
+    }
+
+  }
+  
+
+
+{% endblock %}
+
+{% block body %} {% load static %}
+<div class="container-fluid">
+  <div class="row">
+    <h1 class="text-center text-white">Welcome to digital invitation card</h1>
+  </div>
+  <img id="imgd" src={% static "images/header-img.png" %}  alt="">
+  {% for cards in allcart %}
+  <p class="h1 text-center text-white mt-4" id="{{cards.0.category}}">{{cards.0.category}}</p>
+  <div class="row justify-content-center mt-2">
+    {% for i in cards %}
+    <div class="col-md-2" style="position: relative; margin: 1rem">
+
+      <div class="row justify-content-between text-danger fcard" style="position: absolute;
+        z-index: 10;">
+        <div class="col-md-4">
+
+          <h3>{{i.offer}}</h3>
+        </div>
+        <div class="col-md-4">
+
+          <h3 style="margin-right: 21rem;">{{i.tag}}</h3>
+        </div>
+      </div>
+      <div class="row card fcard">
+        <div  style="padding-top: 0.8rem;">
+          <!-- <a href="/viewcard/{{i.code}}"><img src='/media/{{i.image}}' class="img-fluid"></a>
+           
+              <!-- Button trigger modal -->
+
+          <button data-bs-toggle="modal" data-bs-target="#{{i.code}}">
+            <img src='/media/{{i.image}}' class="img-fluid">
+          </button>
+
+          <!-- Modal -->
+          <div class="modal fade" id="{{i.code}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-fullscreen container-sm">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <div class="container ">
+                    <h1 class="text-center">this is model body</h1>
+                    <h2 class=" h2 text-center">
+                      Code: <spam class="text-primary h2"> {{i.code}} </spam>
+                    </h2>
+                    <div class="row mt-5 justify-content-evenly">
+                      <div class="col-md-5">
+                        <img id="i{{i.code}}" src='/media/{{i.image}}' class="img-fluid iimg">
+                        <video class="vvid" id="v{{i.code}}" style="width: 100%;
+                        height: auto;" controls="controls">
+                          <source src="/media/{{i.video}}" type="video/mp4" />
+                        </video>
+
+                        <div class="row mt-2">
+                          <div class="col-2 iiimg" id="{{i.code}}">
+                            <img src='/media/{{i.image}}' class="img2">
+                          </div>
+                          <div class="col-2">
+                            <button class="vid" id="{{i.code}}">
+                              <video style="width: 100%;
+                              height: 100%;">
+                                <source src="/media/{{i.video}}" type="video/mp4" />
+                              </video> </button>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="col-md-5">
+                        <h2> {{i.content}}</h2>
+                        <br>
+                        <h2>Price: {{i.price}}</h2>
+                        <div class="d-grid gap-2">
+                          <button class="btn btn-primary" type="button">Place Order</button>
+                          <button class="btn btn-primary" type="button">Order Now</button>
+                        </div>
+                        <div class="row mt-2">
+                          <div class="col-6  ">
+                            <button class="step">
+                              <h2>Step for Order</h2>
+                            </button>
+                          </div>
+                          <div class="col-md-6">
+                            <button class="desc">
+                              <h2>Descrition</h2>
+                            </button>
+                          </div>
+                        </div>
+                        <div class="row tstep mt-2">
+                          <p class="fs-3">
+                            It's very simple,<br>
+                            1. select the invitaion video you would like to order & copy the code of that video
+                            (sample :
+                            "MDI001")<br>
+                            2. Click on "Order on whatsapp"<br>
+                            3. it will lead you to our whatsapp no. where you can send your Program details (in text)
+                            &
+                            Photos.<br>
+                            4. Pay the Amount from Gpay, Phonepay or any other payment mode.<br>
+                            5. Get your Video in 1-2 Working Days. (you can ask for urgent same day delivery)
+                          </p>
+                        </div>
+
+                        <div class="row tdesc mt-2">
+                          <p class="fs-3">{{i.more_info}} </p>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary">Understood</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Modal -->
+
+        </div>
+        <div class="row justify-content-center">
+          <h3 class="text-center">{{i.content}}</h3>
+
+          <div class="col-md-6">
+            <h3>
+              Code: <spam class="text-primary"> {{i.code}} </spam>
+            </h3>
+          </div>
+          <div class="col-md-6" style="text-align-last: end;">
+            <h3>At Just: {{i.price}}₹</h3>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    {% if forloop.counter|divisibleby:5 and forloop.counter > 0 and not forloop.last %}
+  </div>
+  <div class="row justify-content-center mt-2">
+    {% endif %}
+    {% endfor %}
+  </div>
+  {% endfor %}
+</div>
+
+
+{% block js %}
+<script>
+  $(document).ready(function () {
+    $('.vvid').hide();
+    $('.tdesc').hide();
+    $('.vid').click(function () {
+      var idr = this.id
+
+      $('#v' + idr).show();
+      $('#i' + idr).hide();
+
+    });
+
+    $('.iiimg').click(function () {
+      var idr = this.id
+      $('#v' + idr).hide();
+      $('#i' + idr).show();
+    });
+
+    $('.desc').click(function () {
+      console.log('desc')
+      $('.tdesc').show();
+      $('.tstep').hide();
+    });
+
+    $('.step').click(function () {
+      console.log('step')
+      $('.tstep').show();
+      $('.tdesc').hide();
+    });
+
+  });
+
+</script>
+{% endblock %}
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends "card/base1.html "%}
+{% block title %} FAQ {% endblock%}
+{% block cs %}
+.footer{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    }
+    .accordion-item{
+        margin-bottom: 0.5rem;
+    }
+    {% endblock %}
+
+{% block body%}
+<div class="container mt-5" style="min-height: 80vh;">
+
+    <!--fortesting-->
+    <div class="accordion" id="accordionPanelsStayOpenExample">
+        {% for item in fa %}
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="panelsStayOpen-headingOne{{forloop.counter}}">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#demo{{forloop.counter}}" aria-expanded="false"
+                    aria-controls="panelsStayOpen-collapseOne{{forloop.counter}}"><p class="fs-1">{{item.question}}</p>
+                    
+                </button>
+            </h2>
+            <div id="demo{{forloop.counter}}" class="accordion-collapse collapse"
+                aria-labelledby="panelsStayOpen-headingOne{{forloop.counter}}">
+                <div class="accordion-body">
+                    <strong><p class="fs-2">{{item.answer}}</p></strong> 
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+
+
+    <!--end testion-->
+
+</div>
+{% endblock %}
